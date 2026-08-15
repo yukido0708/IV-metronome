@@ -58,17 +58,18 @@ input[type="number"], select {
 /*물방울 모양 + 입체감 정의 */
 .drop {
   width: 16px;
-  height: 18px; /* 세로로 길게 */
+  height: 22px; /* 세로로 길게 */
   background: #0d6efd;
   /* 물방울 모양: 처음처럼 예쁘고 둥근 형태 유지 */
-  border-radius: 0% 100% 50% 50% / 0% 50% 50% 100%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
+  /* translate(-50%, -50%) 만 유지하고 rotate를 제거 */
+  transform: translate(-50%, -50%);
   opacity: 0;
   /* 은은한 네온 글로우 효과 강화 */
-  box-shadow: 0 0 12px rgba(13, 110, 253, 0.9), inset -1px -3px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.9), inset -1px -3px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* 아래로 예쁘고 확실하게 떨어지며 깜빡이는 애니메이션 */
@@ -79,19 +80,20 @@ input[type="number"], select {
 @keyframes dropDrip {
   0% {
     opacity: 0;
-    transform: translate(-50%, -250%) rotate(-45deg) scale(0.9);
+    /* rotate(-45deg)를 제거하고 scaleY로 자연스러운 늘어남 효과 추가 */
+    transform: translate(-50%, -250%) scaleY(1.3);
   }
   30% {
     opacity: 1;
-    transform: translate(-50%, -100%) rotate(-45deg) scale(1);
+    transform: translate(-50%, -100%) scaleY(1);
   }
   70% {
     opacity: 1;
-    transform: translate(-50%, -30%) rotate(-45deg) scale(1);
+    transform: translate(-50%, -30%) scaleY(1);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, 100%) rotate(-45deg) scale(0.9);
+    transform: translate(-50%, 100%) scaleY(0.9);
   }
 }
     
