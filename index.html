@@ -13,11 +13,47 @@
     .card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); max-width: 480px; margin: 0 auto 16px; }
     h2 { margin: 0 0 16px; font-size: 1.2rem; color: #111; text-align: center; }
     .label { font-size: 0.85rem; color: #666; margin-bottom: 6px; font-weight: 600; }
-    .btn-group { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-    .btn-preset { flex: 1; min-width: 70px; padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer; text-align: center; }
+    .btn-group {
+  display: flex;
+  gap: 4px; /* 버튼 사이 간격을 8px에서 4px로 줄임 */
+  margin-bottom: 16px;
+  flex-wrap: nowrap; /* 줄바꿈 방지 */
+}
+
+.btn-preset {
+  flex: 1;
+  min-width: 0; /* 화면이 좁아져도 넘치지 않고 쪼그라들수 있게 설정 */
+  padding: 8px 2px; /* 좌우 여백 축소 */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.8rem; /* 폰트 크기 살짝 축소 */
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
     .btn-preset.active { background: #e7f1ff; border-color: #0d6efd; color: #0d6efd; }
-    .input-row { display: flex; gap: 8px; margin-bottom: 16px; }
-    input[type="number"], select { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; text-align: center; }
+   .input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.input-row > div {
+  flex: 1; /* 반반씩 정확히 50% 차지 */
+  min-width: 0; /* 자식 요소가 부모 너비를 넘지 못하도록 제한 */
+}
+
+input[type="number"], select {
+  width: 100%; /* 부모 너비에 딱 맞춤 */
+  padding: 10px 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+}
     .result-box { background: #f8f9fa; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px; }
     .result-main { font-size: 1.8rem; font-weight: 700; color: #0d6efd; margin: 4px 0; }
     .result-sub { font-size: 0.9rem; color: #666; }
