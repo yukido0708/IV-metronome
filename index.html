@@ -79,11 +79,11 @@ input[type="number"], select {
 @keyframes dropDrip {
   0% {
     opacity: 0;
-    transform: translate(-50%, -150%) scaleY(1.1); /* 위에서 시작 + 살짝 늘어남 */
+    transform: translate(-50%, -250%) scaleY(1.1); /* 위에서 시작 + 살짝 늘어남 */
   }
   30% {
     opacity: 1;
-    transform: translate(-50%, -50%) scaleY(1); /* 제자리에서 원래 예쁜 모양 */
+    transform: translate(-50%, -100%) scaleY(1); /* 제자리에서 원래 예쁜 모양 */
   }
   70% {
     opacity: 1;
@@ -91,7 +91,7 @@ input[type="number"], select {
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, 150%) scaleY(0.9); /* 아주 아래로 이동 + 사라짐 */
+    transform: translate(-50%, 100%) scaleY(0.9); /* 아주 아래로 이동 + 사라짐 */
   }
 }
     
