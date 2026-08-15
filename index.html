@@ -16,9 +16,28 @@
     .btn-group { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
     .btn-preset { flex: 1; min-width: 70px; padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer; text-align: center; }
     .btn-preset.active { background: #e7f1ff; border-color: #0d6efd; color: #0d6efd; }
-    .input-row { display: flex; gap: 8px; margin-bottom: 16px; }
-    input[type="number"], select { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; text-align: center; }
-    .result-box { background: #f8f9fa; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px; }
+    /* 기존 .input-row 수정: 자식 요소들이 균등하게 너비를 나누어 갖도록 설정 */
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.input-row > div {
+  flex: 1;          /* 두 입력 영역이 화면 너비를 반씩 나눠 가짐 */
+  min-width: 0;     /* 모바일에서 내용물이 자식을 뚫고 나가는 현상 방지 */
+}
+
+/* 기존 input[type="number"], select 수정 */
+input[type="number"], select {
+  width: 100%;      /* 감싸고 있는 div 너비에 맞춤 */
+  padding: 12px 8px; /* 모바일 폭을 고려해 좌우 여백을 약간 줄임 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+     .result-box { background: #f8f9fa; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px; }
     .result-main { font-size: 1.8rem; font-weight: 700; color: #0d6efd; margin: 4px 0; }
     .result-sub { font-size: 0.9rem; color: #666; }
     .drop-visual { height: 80px; display: flex; align-items: center; justify-content: center; position: relative; }
@@ -52,11 +71,11 @@
   <div class="input-row">
     <div>
       <div class="label">직접 입력 (mL)</div>
-      <input type="number" id="volInput" value="100" onchange="calculate()">
+      <input type="number" id="volInput" value="1000" onchange="calculate()">
     </div>
     <div>
       <div class="label">직접 입력 (분)</div>
-      <input type="number" id="timeInput" value="60" onchange="calculate()">
+      <input type="number" id="timeInput" value="720" onchange="calculate()">
     </div>
   </div>
 
