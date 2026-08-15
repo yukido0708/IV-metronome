@@ -67,7 +67,7 @@ input[type="number"], select {
   
   <div class="label">수액 용량 (mL)</div>
   <div class="btn-group">
-    <button class="btn-preset active" onclick="setVol(100, this)">100mL</button>
+    <button class="btn-preset" onclick="setVol(100, this)">100mL</button>
     <button class="btn-preset" onclick="setVol(250, this)">250mL</button>
     <button class="btn-preset" onclick="setVol(500, this)">500mL</button>
   </div>
@@ -75,7 +75,7 @@ input[type="number"], select {
   <div class="label">주입 시간</div>
   <div class="btn-group">
     <button class="btn-preset" onclick="setTime(30, this)">30분</button>
-    <button class="btn-preset active" onclick="setTime(60, this)">1시간</button>
+    <button class="btn-preset" onclick="setTime(60, this)">1시간</button>
     <button class="btn-preset" onclick="setTime(90, this)">1.5시간</button>
     <button class="btn-preset" onclick="setTime(120, this)">2시간</button>
   </div>
@@ -117,7 +117,7 @@ input[type="number"], select {
 </div>
 
 <script>
-  let vol = 100, timeMin = 60, gtt = 20;
+  let vol = 0, timeMin = 0, gtt = 20;
   let intervalSec = 1.8;
   let timerId = null;
   let audioCtx = null;
@@ -140,7 +140,7 @@ input[type="number"], select {
 
   function calculate() {
     vol = parseFloat(document.getElementById('volInput').value) || 0;
-    timeMin = parseFloat(document.getElementById('timeInput').value) || 1;
+    timeMin = parseFloat(document.getElementById('timeInput').value) || 0;
     gtt = parseFloat(document.getElementById('gttSelect').value);
 
     const gttMin = (vol * gtt) / timeMin;
