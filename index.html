@@ -73,7 +73,7 @@ input[type="number"], select {
     <!-- 1. 수액 용량 -->
     <div class="label">수액 용량 (mL)</div>
     <div class="btn-group">
-      <button class="btn-preset active" onclick="setVol(100, this)">100mL</button>
+      <button class="btn-preset" onclick="setVol(100, this)">100mL</button>
       <button class="btn-preset" onclick="setVol(250, this)">250mL</button>
       <button class="btn-preset" onclick="setVol(500, this)">500mL</button>
       <button class="btn-preset" onclick="setVol(1000, this)">1L</button>
@@ -83,7 +83,7 @@ input[type="number"], select {
     <div class="label">주입 시간</div>
     <div class="btn-group">
       <button class="btn-preset" onclick="setTime(30, this)">30분</button>
-      <button class="btn-preset active" onclick="setTime(60, this)">1시간</button>
+      <button class="btn-preset" onclick="setTime(60, this)">1시간</button>
       <button class="btn-preset" onclick="setTime(90, this)">1.5시간</button>
       <button class="btn-preset" onclick="setTime(120, this)">2시간</button>
       <button class="btn-preset" onclick="setTime(240, this)">4시간</button>
@@ -93,11 +93,11 @@ input[type="number"], select {
     <div class="input-row">
       <div>
         <div class="label">직접 입력 (mL)</div>
-        <input type="number" id="volInput" value="100" onchange="calculate()">
+        <input type="number" id="volInput" value="" placeholder="용량(mL)" onchange="calculate()">
       </div>
       <div>
         <div class="label">직접 입력 (분)</div>
-        <input type="number" id="timeInput" value="60" onchange="calculate()">
+        <input type="number" id="timeInput" value="" placeholder="시간(min)" onchange="calculate()">
       </div>
     </div>
 
