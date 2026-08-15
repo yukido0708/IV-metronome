@@ -55,35 +55,35 @@ input[type="number"], select {
     .drop-visual { height: 80px; display: flex; align-items: center; justify-content: center; position: relative; }
 
     
-/* 물방울 입체감 및 뾰족한 모양 정의 */
+/* 처음처럼 예쁘고 둥근 물방울 모양 + 입체감 정의 */
 .drop {
-  width: 14px;
-  height: 20px; /* 세로로 길게 */
+  width: 16px;
+  height: 22px; /* 세로로 길게 */
   background: #0d6efd;
-  /* 물방울 모양: 위쪽은 뾰족하게, 아래쪽은 둥글게 */
-  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+  /* 물방울 모양: 처음처럼 예쁘고 둥근 형태 유지 */
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  /* 은은한 네온 글로우 효과 */
+  /* 은은한 네온 글로우 효과 강화 */
   box-shadow: 0 0 15px rgba(13, 110, 253, 0.9), inset -1px -3px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* 아래로 확실하게 떨어지며 깜빡이는 애니메이션 */
+/* 아래로 예쁘고 확실하게 떨어지며 깜빡이는 애니메이션 */
 .drop.anim {
-  animation: dropDrip 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  animation: dropDrip 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 자연스러운 가속도 */
 }
 
 @keyframes dropDrip {
   0% {
     opacity: 0;
-    transform: translate(-50%, -150%) scaleY(1.3); /* 아주 위에서 시작 + 세로로 늘어남 */
+    transform: translate(-50%, -150%) scaleY(1.1); /* 위에서 시작 + 살짝 늘어남 */
   }
   30% {
     opacity: 1;
-    transform: translate(-50%, -50%) scaleY(1); /* 제자리에서 원래 모양 */
+    transform: translate(-50%, -50%) scaleY(1); /* 제자리에서 원래 예쁜 모양 */
   }
   70% {
     opacity: 1;
@@ -91,7 +91,7 @@ input[type="number"], select {
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, 150%) scaleY(0.8); /* 아주 아래로 이동 + 사라짐 */
+    transform: translate(-50%, 150%) scaleY(0.9); /* 아주 아래로 이동 + 사라짐 */
   }
 }
     
