@@ -53,9 +53,10 @@ input[type="number"], select {
     .result-main { font-size: 1.8rem; font-weight: 700; color: #0d6efd; margin: 4px 0; }
     .result-sub { font-size: 0.9rem; color: #666; }
     .drop-visual { height: 80px; display: flex; align-items: center; justify-content: center; position: relative; }
-    .drop {
-  width: 14px;
-  height: 14px;
+/* 물방울 입체감 및 위치 정의 */
+.drop {
+  width: 16px;
+  height: 16px;
   background: #0d6efd;
   border-radius: 50%;
   position: absolute;
@@ -63,15 +64,30 @@ input[type="number"], select {
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
+  /* 입체감을 주는 파란색 네온 글로우 효과 추가 */
+  box-shadow: 0 0 12px rgba(13, 110, 253, 0.8), inset -2px -2px 4px rgba(0, 0, 0, 0.2);
 }
+
+/* 아래로 톡 떨어지면서 깜빡이는 애니메이션 */
 .drop.anim {
-  animation: dropFlash 0.3s ease-out;
+  animation: dropFlash 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 @keyframes dropFlash {
-  0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
-  70%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -80%) scale(0.7); /* 살짝 위에서 시작 */
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2); /* 중간에 커지면서 강조 */
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.6); /* 아래로 이동하며 사라짐 */
+  }
 }
+    
     .drop.pulse { opacity: 1; transform: rotate(45deg) scale(1.4); }
     .btn-main { width: 100%; padding: 16px; border: none; border-radius: 12px; background: #0d6efd; color: #fff; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
     .btn-main.running { background: #dc3545; }
