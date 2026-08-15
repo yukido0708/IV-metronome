@@ -53,7 +53,25 @@ input[type="number"], select {
     .result-main { font-size: 1.8rem; font-weight: 700; color: #0d6efd; margin: 4px 0; }
     .result-sub { font-size: 0.9rem; color: #666; }
     .drop-visual { height: 80px; display: flex; align-items: center; justify-content: center; position: relative; }
-    .drop { width: 20px; height: 20px; background: #0d6efd; border-radius: 0 50% 50% 50%; transform: rotate(45deg); opacity: 0.2; transition: transform 0.1s; }
+    .drop {
+  width: 14px;
+  height: 14px;
+  background: #0d6efd;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.drop.anim {
+  animation: dropFlash 0.3s ease-out;
+}
+@keyframes dropFlash {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
+  70%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+}
     .drop.pulse { opacity: 1; transform: rotate(45deg) scale(1.4); }
     .btn-main { width: 100%; padding: 16px; border: none; border-radius: 12px; background: #0d6efd; color: #fff; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
     .btn-main.running { background: #dc3545; }
@@ -182,9 +200,11 @@ input[type="number"], select {
     osc.start();
     osc.stop(audioCtx.currentTime + 0.08);
 
-    const drop = document.getElementById('dropElem');
-    drop.classList.add('pulse');
-    setTimeout(() => drop.classList.remove('pulse'), 100);
+   const drop = document.getElementById('dropElem');
+    // Ver 2 스타일: anim 클래스를 넣어 애니메이션 실행
+  drop.classList.remove('anim'); // 이전 애니메이션 제거
+  void drop.offsetWidth; // 브라우저가 다시 계산하도록 강제 (리플로우)
+  drop.classList.add('anim'); // 다시 애니메이션 클래스 추가
   }
 
   function startMetronome() {
