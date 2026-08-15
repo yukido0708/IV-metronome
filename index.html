@@ -14,116 +14,49 @@
     h2 { margin: 0 0 16px; font-size: 1.2rem; color: #111; text-align: center; }
     .label { font-size: 0.85rem; color: #666; margin-bottom: 6px; font-weight: 600; }
     .btn-group { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-    .btn-preset {
-  flex: 1;
-  min-width: 0;          /* 줄바꿈 없이 좁은 폭에도 줄어들 수 있도록 설정 */
-  padding: 8px 4px;      /* 좌우 여백을 줄여 공간 확보 */
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background: #fff;
-  font-size: 0.8rem;      /* 글자 크기를 살짝 줄임 */
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;   /* 글자가 두 줄로 안 깨지도록 설정 */
-}
+    .btn-preset { flex: 1; min-width: 70px; padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer; text-align: center; }
     .btn-preset.active { background: #e7f1ff; border-color: #0d6efd; color: #0d6efd; }
-    /* 기존 .input-row 수정: 자식 요소들이 균등하게 너비를 나누어 갖도록 설정 */
-.input-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.input-row > div {
-  flex: 1;          /* 두 입력 영역이 화면 너비를 반씩 나눠 가짐 */
-  min-width: 0;     /* 모바일에서 내용물이 자식을 뚫고 나가는 현상 방지 */
-}
-
-/* 기존 input[type="number"], select 수정 */
-input[type="number"], select {
-  width: 100%;      /* 감싸고 있는 div 너비에 맞춤 */
-  padding: 12px 8px; /* 모바일 폭을 고려해 좌우 여백을 약간 줄임 */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  text-align: center;
-}
-     .result-box { background: #f8f9fa; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px; }
+    .input-row { display: flex; gap: 8px; margin-bottom: 16px; }
+    input[type="number"], select { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; text-align: center; }
+    .result-box { background: #f8f9fa; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px; }
     .result-main { font-size: 1.8rem; font-weight: 700; color: #0d6efd; margin: 4px 0; }
     .result-sub { font-size: 0.9rem; color: #666; }
     .drop-visual { height: 80px; display: flex; align-items: center; justify-content: center; position: relative; }
-
-    
-.drop {
-  width: 16px;
-  height: 22px;
-  background: #0d6efd;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  box-shadow: 0 0 15px rgba(13, 110, 253, 0.9), inset -1px -3px 3px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.05s ease;
-}
-
-.drop.pulse {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.25);
-}
-    
-
-    
+    .drop { width: 20px; height: 20px; background: #0d6efd; border-radius: 0 50% 50% 50%; transform: rotate(45deg); opacity: 0.2; transition: transform 0.1s; }
     .drop.pulse { opacity: 1; transform: rotate(45deg) scale(1.4); }
     .btn-main { width: 100%; padding: 16px; border: none; border-radius: 12px; background: #0d6efd; color: #fff; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
     .btn-main.running { background: #dc3545; }
     .disclaimer { font-size: 0.75rem; color: #888; text-align: center; margin-top: 12px; line-height: 1.4; }
   </style>
-
-<!-- 웹 앱 아이콘 지정 -->
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
-
-<!-- 모바일 웹앱 설정 -->
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="IV 메트로놈">
-
-  
 </head>
 <body>
 
 <div class="card">
-  <h2>💧 IV 메트로놈 (점적 보조)</h2>
+  <h2>💧 IV 메트로놈 (수액 조절기)</h2>
   
   <div class="label">수액 용량 (mL)</div>
   <div class="btn-group">
-    <button class="btn-preset" onclick="setVol(100, this)">100mL</button>
+    <button class="btn-preset active" onclick="setVol(100, this)">100mL</button>
     <button class="btn-preset" onclick="setVol(250, this)">250mL</button>
     <button class="btn-preset" onclick="setVol(500, this)">500mL</button>
-    <button class="btn-preset" onclick="setVol(1000, this)">1L</button>
   </div>
 
   <div class="label">주입 시간</div>
   <div class="btn-group">
     <button class="btn-preset" onclick="setTime(30, this)">30분</button>
-    <button class="btn-preset" onclick="setTime(60, this)">1시간</button>
+    <button class="btn-preset active" onclick="setTime(60, this)">1시간</button>
     <button class="btn-preset" onclick="setTime(90, this)">1.5시간</button>
     <button class="btn-preset" onclick="setTime(120, this)">2시간</button>
-    <button class="btn-preset" onclick="setTime(240, this)">4시간</button>
   </div>
 
   <div class="input-row">
     <div>
       <div class="label">직접 입력 (mL)</div>
-      <input type="number" id="volInput" placeholder="용량(ml)" onchange="calculate()">
+      <input type="number" id="volInput" value="100" onchange="calculate()">
     </div>
     <div>
       <div class="label">직접 입력 (분)</div>
-      <input type="number" id="timeInput" placeholder="시간(min)" onchange="calculate()">
+      <input type="number" id="timeInput" value="60" onchange="calculate()">
     </div>
   </div>
 
@@ -153,7 +86,7 @@ input[type="number"], select {
 </div>
 
 <script>
-  let vol = 0, timeMin = 0, gtt = 20;
+  let vol = 100, timeMin = 60, gtt = 20;
   let intervalSec = 1.8;
   let timerId = null;
   let audioCtx = null;
@@ -176,7 +109,7 @@ input[type="number"], select {
 
   function calculate() {
     vol = parseFloat(document.getElementById('volInput').value) || 0;
-    timeMin = parseFloat(document.getElementById('timeInput').value) || 0;
+    timeMin = parseFloat(document.getElementById('timeInput').value) || 1;
     gtt = parseFloat(document.getElementById('gttSelect').value);
 
     const gttMin = (vol * gtt) / timeMin;
@@ -204,12 +137,9 @@ input[type="number"], select {
     osc.start();
     osc.stop(audioCtx.currentTime + 0.08);
 
- const drop = document.getElementById('dropElem');
-    // 제자리 깜빡임 (pulse)
-  drop.classList.add('pulse');
-  setTimeout(() => {
-    drop.classList.remove('pulse');
-  }, 120);
+    const drop = document.getElementById('dropElem');
+    drop.classList.add('pulse');
+    setTimeout(() => drop.classList.remove('pulse'), 100);
   }
 
   function startMetronome() {
